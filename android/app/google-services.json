@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "7016974979",
+    "project_id": "little-spark",
+    "storage_bucket": "little-spark.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:7016974979:android:4b468da62d81a251ab69b6",
+        "android_client_info": {
+          "package_name": "com.littlespark"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeeLbml0zxsOHV3MerQjbiJs2ZuaTIxJ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

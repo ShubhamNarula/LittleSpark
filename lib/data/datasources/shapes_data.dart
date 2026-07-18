@@ -1,0 +1,86 @@
+import '../models/shape_model.dart';
+
+class ShapesData {
+  static const List<ShapeModel> shapes = [
+    ShapeModel(
+      name: 'Circle',
+      sides: 0,
+      description: 'Perfectly round, like a giant sun! ☀️',
+      realWorldExample: 'Bicycle wheels, coins, and wall clocks are circles! 🛞',
+      emoji: '🟡',
+      type: ShapeType.circle,
+    ),
+    ShapeModel(
+      name: 'Square',
+      sides: 4,
+      description: 'Four equal sides, and four corners! ⬛',
+      realWorldExample: 'A chess board, photo frames, and square tables! 🏁',
+      emoji: '🟧',
+      type: ShapeType.square,
+    ),
+    ShapeModel(
+      name: 'Triangle',
+      sides: 3,
+      description: 'Three straight sides that meet at points! 🔺',
+      realWorldExample: 'A slice of pizza, a sandwich, or hanger! 🍕',
+      emoji: '🔺',
+      type: ShapeType.triangle,
+    ),
+    ShapeModel(
+      name: 'Rectangle',
+      sides: 4,
+      description: 'Four sides, where opposite sides are equal! 🟩',
+      realWorldExample: 'App screens, doors, and chocolate bars! 🍫',
+      emoji: '🟩',
+      type: ShapeType.rectangle,
+    ),
+    ShapeModel(
+      name: 'Star',
+      sides: 10,
+      description: 'Points that shine bright in the night! ⭐',
+      realWorldExample: 'Starfish in the sea, or glowing stars in space! 🌟',
+      emoji: '⭐',
+      type: ShapeType.star,
+    ),
+    ShapeModel(
+      name: 'Heart',
+      sides: 0,
+      description: 'A symbol of love, care, and friendship! ❤️',
+      realWorldExample: 'Heart-shaped cookies, card designs, and leaf tips! 🍂',
+      emoji: '❤️',
+      type: ShapeType.heart,
+    ),
+    ShapeModel(
+      name: 'Diamond',
+      sides: 4,
+      description: 'A slanted square shape, like a flying kite! 💠',
+      realWorldExample: 'Kites, playing cards diamond suite, and road signs! 🪁',
+      emoji: '🔷',
+      type: ShapeType.diamond,
+    ),
+    ShapeModel(
+      name: 'Oval',
+      sides: 0,
+      description: 'An elongated circle, like a farm egg! 🥚',
+      realWorldExample: 'Chicken eggs, rugby balls, and mirrors! 🥚',
+      emoji: '🥚',
+      type: ShapeType.oval,
+    ),
+    ShapeModel(
+      name: 'Pentagon',
+      sides: 5,
+      description: 'Five sides, looking like a cute house! 🏠',
+      realWorldExample: 'The shape of a house roof layout, or black patches on a football! ⚽',
+      emoji: '⬠',
+      type: ShapeType.pentagon,
+    ),
+    ShapeModel(
+      name: 'Hexagon',
+      sides: 6,
+      description: 'Six sides, matching a bee\'s honeycomb! 🐝',
+      realWorldExample: 'Honeybee cells, nuts/bolts, and turtle shell patterns! 🐢',
+      emoji: '⬡',
+      type: ShapeType.hexagon,
+    ),
+  ];
+}
