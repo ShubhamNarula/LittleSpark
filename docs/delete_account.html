@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data & Account Deletion Request - LittleSpark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --accent: #f43f5e;
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 48px;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            border: 1px solid var(--border);
+        }
+
+        header {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .logo-area {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #fca5a5, #f43f5e);
+            border-radius: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 10px 15px -3px rgba(244, 63, 94, 0.3);
+        }
+
+        .logo-icon {
+            font-size: 36px;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-top: 32px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-main);
+            font-size: 0.975rem;
+        }
+
+        .info-box {
+            background-color: #f0fdf4;
+            border-left: 4px solid var(--success);
+            padding: 18px;
+            border-radius: 12px;
+            margin: 24px 0;
+        }
+
+        .info-box p {
+            margin-bottom: 0;
+            color: #166534;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+        }
+
+        button {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .hidden-success {
+            display: none;
+            text-align: center;
+            padding: 32px 0;
+        }
+
+        .hidden-success h3 {
+            color: var(--success);
+            margin-bottom: 12px;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo-area">
+            <span class="logo-icon">🗑️</span>
+        </div>
+        <h1>Data & Account Deletion</h1>
+    </header>
+
+    <div id="requestForm">
+        <p>At <strong>LittleSpark</strong>, we value your privacy. This page explains how your data is handled and allows you to request data deletion.</p>
+        
+        <div class="info-box">
+            <p><strong>Did you know?</strong> LittleSpark does not use or create online user accounts. All of your child's game progress is saved locally on your device. You can completely delete all data instantly by uninstalling the app or clearing the app cache in your device's settings.</p>
+        </div>
+
+        <h2>Submit a Deletion Request</h2>
+        <p>If you have any questions or want to confirm the deletion of any cached information or analytics identifiers, please submit your request below. We will respond within 48 hours.</p>
+
+        <form id="deletionForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" required placeholder="John Doe">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required placeholder="john@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Request Details (Optional)</label>
+                <textarea id="message" rows="4" placeholder="Please specify if you have any questions..."></textarea>
+            </div>
+
+            <button type="submit">Submit Deletion Request</button>
+        </form>
+    </div>
+
+    <div id="successMessage" class="hidden-success">
+        <h3>Request Submitted Successfully!</h3>
+        <p>Thank you. Your request has been received. Since our app does not store personal accounts on our cloud servers, no further action is typically required, but we will contact you via email at <span id="userEmail" style="font-weight: 600;"></span> if you need any manual support.</p>
+        <button onclick="resetForm()" style="margin-top: 16px; background-color: var(--text-muted);">Back to Form</button>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            document.getElementById('userEmail').innerText = email;
+            document.getElementById('requestForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Optionally, in a real environment, this could submit to a backend API or form handler.
+        }
+
+        function resetForm() {
+            document.getElementById('deletionForm').reset();
+            document.getElementById('requestForm').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+    </script>
+
+    <div class="footer">
+        <p>&copy; 2026 LittleSpark. All rights reserved.</p>
+    </div>
+</div>
+
+</body>
+</html>
