@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - LittleSpark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --accent: #f43f5e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 48px;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            border: 1px solid var(--border);
+        }
+
+        header {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 32px;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .logo-area {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #a5b4fc, #6366f1);
+            border-radius: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+        }
+
+        .logo-icon {
+            font-size: 40px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .last-updated {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-top: 40px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--primary);
+            padding-left: 12px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        ul {
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .highlight-box {
+            background-color: #eef2ff;
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 28px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            color: #3730a3;
+            font-weight: 500;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            body {
+                padding: 20px 10px;
+            }
+            .container {
+                padding: 24px;
+                border-radius: 16px;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+            h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo-area">
+            <span class="logo-icon">✨</span>
+        </div>
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last Updated: July 20, 2026</p>
+    </header>
+
+    <main>
+        <p>Welcome to <strong>LittleSpark</strong> (the "App"), a magical learning application for children, developed by <strong>Shubham Narula</strong> ("we", "us", or "our"). We are committed to protecting the privacy of our users, especially children. This Privacy Policy explains how we collect, use, and safeguard information when you use our App.</p>
+
+        <div class="highlight-box">
+            <p><strong>COPPA & Children's Privacy Compliance:</strong> LittleSpark is designed for young children. We do not collect, store, or share any personal identity information from children. All learning data and speech recognition features run entirely on the user's local device.</p>
+        </div>
+
+        <h2>1. Information Collection and Use</h2>
+        <p>Our App is built to be a safe educational environment. We collect very limited data to ensure correct functioning and improve the user experience:</p>
+        <ul>
+            <li><strong>Audio and Voice Data (Microphone):</strong> The App uses the microphone to power interactive voice/speech-to-text games (such as letter pronunciation). All audio processing is done entirely on-device. <strong>We do not upload, transmit, or store your child's voice recordings on any remote server.</strong></li>
+            <li><strong>Local Progress Storage:</strong> We use Hive (a local database) to save game progress, unlocked rewards, and settings locally on your device. This data is never uploaded to the cloud or shared with third parties.</li>
+        </ul>
+
+        <h2>2. Third-Party Services</h2>
+        <p>To improve our service and communicate updates, we integrate the following third-party developer tools:</p>
+        <ul>
+            <li><strong>Firebase Analytics:</strong> We use Google Firebase Analytics to collect anonymized usage statistics (such as which screens are opened and game performance metrics) to help us improve the game structure. No personally identifiable information (PII) is tracked.</li>
+            <li><strong>Firebase Cloud Messaging (FCM):</strong> Used to send occasional notifications to keep users updated. You can disable notifications anytime in your device settings.</li>
+        </ul>
+
+        <h2>3. Device Permissions Required</h2>
+        <p>To provide all interactive learning features, the App may request access to:</p>
+        <ul>
+            <li><strong>Microphone Permission:</strong> Required for the voice-based learning games (e.g., repeating alphabet sounds).</li>
+            <li><strong>Notification Permission:</strong> Required to deliver motivational learning reminders.</li>
+        </ul>
+
+        <h2>4. Data Retention and Deletion</h2>
+        <p>Since all personal progress data is stored locally on your device using Hive local storage:</p>
+        <ul>
+            <li>You can instantly delete all game progress and cached data by clearing the App's cache/data in your Android/iOS settings or by uninstalling the App from your device.</li>
+            <li>Since we do not support or require user account creation, we do not store any user accounts on our servers.</li>
+        </ul>
+
+        <h2>5. Children's Privacy Policy</h2>
+        <p>We strictly comply with the Children's Online Privacy Protection Act (COPPA). We do not collect or solicit personal information from children under the age of 13. If you believe that we have accidentally collected personal information from a child under 13, please contact us immediately, and we will take steps to remove that information quickly.</p>
+
+        <h2>6. Changes to This Privacy Policy</h2>
+        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date at the top.</p>
+
+        <h2>7. Contact Us</h2>
+        <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at:</p>
+        <p>📧 Email: <a href="mailto:shubham.narula.dev@gmail.com">shubham.narula.dev@gmail.com</a></p>
+    </main>
+
+    <div class="footer">
+        <p>&copy; 2026 LittleSpark. All rights reserved.</p>
+    </div>
+</div>
+
+</body>
+</html>

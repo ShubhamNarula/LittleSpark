@@ -144,3 +144,8 @@ lib/
 
 ## 📝 License & Contributions
 This project is created for educational and learning purposes. Feel free to explore the code, report issues, or suggest improvements!
+
+
+privacy policy url
+Privacy Policy URL: 👉 https://shubhamnarula.github.io/LittleSpark/privacy_policy.html
+Data / Account Deletion URL: 👉 https://shubhamnarula.github.io/LittleSpark/delete_account.html
