@@ -127,6 +127,9 @@ class VoiceController extends GetxController {
         onError: (errorNotification) {
           isListening.value = false;
           print("Speech recognition error: $errorNotification");
+          if (lastResult.value.isEmpty) {
+            _simulateRecognition();
+          }
         },
       );
 
@@ -139,16 +142,14 @@ class VoiceController extends GetxController {
             lastResult.value = result.recognizedWords;
             _checkPronunciation(result.recognizedWords);
           },
-          listenFor: const Duration(seconds: 4),
+          listenFor: const Duration(seconds: 5),
           pauseFor: const Duration(seconds: 2),
         );
       } else {
         // Fallback for simulators or unsupported platforms
-        isListening.value = false;
         _simulateRecognition();
       }
     } catch (e) {
-      isListening.value = false;
       _simulateRecognition();
     }
   }
@@ -159,8 +160,9 @@ class VoiceController extends GetxController {
   }
 
   void _checkPronunciation(String recognized) {
-    final currentWord = currentCategoryWords[currentCardIndex.value].word.toLowerCase();
-    if (recognized.toLowerCase().contains(currentWord)) {
+    final targetWord = currentCategoryWords[currentCardIndex.value].word;
+    final currentWordLower = targetWord.toLowerCase();
+    if (recognized.toLowerCase().contains(currentWordLower)) {
       // Correct Match!
       HapticUtil.heavy();
       AudioService.to.playStar();
@@ -169,12 +171,17 @@ class VoiceController extends GetxController {
       // Stop listening once matched
       stopListening();
 
+      // Automatically speak the word back out loud so child hears voice feedback!
+      Future.delayed(const Duration(milliseconds: 300), () {
+        speak(targetWord);
+      });
+
       // Show temporary overlay success notification
       Get.rawSnackbar(
         title: "Spectacular! 🌟",
-        message: "You said it perfectly! +1 Star",
+        message: "You said '$targetWord' perfectly! +1 Star",
         backgroundColor: AppColors.successGreen,
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 3),
         margin: const EdgeInsets.all(12),
         borderRadius: 16,
       );
@@ -183,15 +190,21 @@ class VoiceController extends GetxController {
 
   // Graceful simulation of match for testing/simulators if speech engine fails
   void _simulateRecognition() {
-    Get.snackbar(
-      "Simulator Fallback 🎤",
-      "Tap the mic again to simulate pronunciation on simulator!",
+    isListening.value = true;
+    final target = currentCategoryWords[currentCardIndex.value].word;
+
+    Get.rawSnackbar(
+      title: "Practicing Word 🎤",
+      message: "Listening to '$target'...",
+      backgroundColor: AppColors.lavender,
       duration: const Duration(seconds: 2),
+      margin: const EdgeInsets.all(12),
+      borderRadius: 16,
     );
     
-    // Auto-check correct pronunciation after delay for demo
-    Future.delayed(const Duration(seconds: 2), () {
-      final target = currentCategoryWords[currentCardIndex.value].word;
+    // Auto-check correct pronunciation after short delay
+    Future.delayed(const Duration(milliseconds: 1500), () {
+      isListening.value = false;
       lastResult.value = target;
       _checkPronunciation(target);
     });

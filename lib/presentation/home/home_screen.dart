@@ -301,13 +301,20 @@ class HomeScreen extends GetView<HomeController> {
                     child: GetBuilder<HomeController>(
                       init: controller,
                       builder: (_) {
+                        final screenSize = MediaQuery.of(context).size;
+                        final bottomInset = MediaQuery.of(context).padding.bottom;
+                        final double dynamicAspectRatio = screenSize.height < 680
+                            ? 1.05
+                            : (screenSize.height < 780 ? 1.0 : 0.95);
+
                         return GridView.builder(
                           physics: const BouncingScrollPhysics(),
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          padding: EdgeInsets.only(bottom: 8.0 + (bottomInset > 0 ? bottomInset : 0.0)),
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 12.0,
                             mainAxisSpacing: 12.0,
-                            childAspectRatio: 0.95,
+                            childAspectRatio: dynamicAspectRatio,
                           ),
                           itemCount: controller.modules.length,
                           itemBuilder: (ctx, i) {
@@ -324,23 +331,31 @@ class HomeScreen extends GetView<HomeController> {
                 ),
 
                 // Motivational quote bar
-                Container(
-                  margin: const EdgeInsets.only(left: 12, right: 12, bottom: 8),
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  decoration: BoxDecoration(
-                    color: AppColors.gold.withOpacity(0.06),
-                    borderRadius: BorderRadius.circular(14),
-                    border: Border.all(color: AppColors.gold.withOpacity(0.12)),
-                  ),
-                  child: Text(
-                    controller.dailyQuote,
-                    style: AppTextStyles.bodySmall.copyWith(
-                      color: AppColors.gold.withOpacity(0.7),
-                      fontStyle: FontStyle.italic,
+                Builder(builder: (ctx) {
+                  final bottomInset = MediaQuery.of(ctx).padding.bottom;
+                  return Container(
+                    margin: EdgeInsets.only(
+                      left: 12,
+                      right: 12,
+                      top: 4,
+                      bottom: 8 + (bottomInset > 0 ? bottomInset : 0.0),
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    decoration: BoxDecoration(
+                      color: AppColors.gold.withOpacity(0.06),
+                      borderRadius: BorderRadius.circular(14),
+                      border: Border.all(color: AppColors.gold.withOpacity(0.12)),
+                    ),
+                    child: Text(
+                      controller.dailyQuote,
+                      style: AppTextStyles.bodySmall.copyWith(
+                        color: AppColors.gold.withOpacity(0.7),
+                        fontStyle: FontStyle.italic,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  );
+                }),
               ],
             ),
           ),

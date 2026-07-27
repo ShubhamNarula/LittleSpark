@@ -90,7 +90,12 @@ class _AdventureResultScreenState extends State<AdventureResultScreen> {
 
           SafeArea(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
+              padding: EdgeInsets.only(
+                left: 24,
+                right: 24,
+                top: 24,
+                bottom: 24 + (MediaQuery.of(context).padding.bottom > 0 ? MediaQuery.of(context).padding.bottom : 0.0),
+              ),
               child: Column(
                 children: [
                   const SizedBox(height: 20),

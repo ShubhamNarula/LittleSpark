@@ -70,15 +70,27 @@ class FruitsScreen extends GetView<FruitsController> {
   }
 
   Widget _buildGrid(List itemsList) {
-    return GridView.builder(
-      padding: const EdgeInsets.all(16.0),
-      physics: const BouncingScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 12.0,
-        mainAxisSpacing: 12.0,
-        childAspectRatio: 0.95,
-      ),
+    return Builder(builder: (context) {
+      final screenSize = MediaQuery.of(context).size;
+      final bottomInset = MediaQuery.of(context).padding.bottom;
+      final double dynamicRatio = screenSize.height < 680
+          ? 1.05
+          : (screenSize.height < 780 ? 1.0 : 0.95);
+
+      return GridView.builder(
+        padding: EdgeInsets.only(
+          left: 16.0,
+          right: 16.0,
+          top: 16.0,
+          bottom: 20.0 + (bottomInset > 0 ? bottomInset : 0.0),
+        ),
+        physics: const BouncingScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 12.0,
+          mainAxisSpacing: 12.0,
+          childAspectRatio: dynamicRatio,
+        ),
       itemCount: itemsList.length,
       itemBuilder: (ctx, i) {
         final item = itemsList[i];
@@ -93,5 +105,6 @@ class FruitsScreen extends GetView<FruitsController> {
         });
       },
     );
+    });
   }
 }

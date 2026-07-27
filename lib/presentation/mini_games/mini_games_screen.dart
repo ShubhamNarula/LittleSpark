@@ -99,7 +99,12 @@ class MiniGamesScreen extends GetView<MiniGamesController> {
           // Game Cards List
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              padding: EdgeInsets.only(
+                left: 16.0,
+                right: 16.0,
+                top: 8.0,
+                bottom: 24.0 + (MediaQuery.of(context).padding.bottom > 0 ? MediaQuery.of(context).padding.bottom : 0.0),
+              ),
               physics: const BouncingScrollPhysics(),
               itemCount: controller.games.length,
               itemBuilder: (ctx, i) {

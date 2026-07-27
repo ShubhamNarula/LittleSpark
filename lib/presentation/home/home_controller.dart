@@ -185,7 +185,7 @@ class HomeController extends GetxController {
         route: AppRoutes.rhymes,
         emoji: '🎵',
         colors: AppColors.rhymesGradient,
-        getProgress: () => 1.0,
+        getProgress: () => _progress.visitedRhymes.length / 20.0,
       ),
       ModuleInfo(
         name: 'Learning Adventure 🏃',

@@ -76,37 +76,49 @@ class ColorsShapesScreen extends GetView<ColorsShapesController> {
   }
 
   Widget _buildColorsTab() {
-    return GridView.builder(
-      padding: const EdgeInsets.all(16.0),
-      physics: const BouncingScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 12.0,
-        mainAxisSpacing: 12.0,
-        childAspectRatio: 1.3,
-      ),
-      itemCount: controller.colorsList.length,
-      itemBuilder: (ctx, i) {
-        return ColorSwatchCard(colorItem: controller.colorsList[i]);
-      },
-    );
+    return Builder(builder: (context) {
+      final screenSize = MediaQuery.of(context).size;
+      final bottomInset = MediaQuery.of(context).padding.bottom;
+      final double dynamicRatio = screenSize.height < 680 ? 1.35 : 1.3;
+
+      return GridView.builder(
+        padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0, bottom: 20.0 + (bottomInset > 0 ? bottomInset : 0.0)),
+        physics: const BouncingScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 12.0,
+          mainAxisSpacing: 12.0,
+          childAspectRatio: dynamicRatio,
+        ),
+        itemCount: controller.colorsList.length,
+        itemBuilder: (ctx, i) {
+          return ColorSwatchCard(colorItem: controller.colorsList[i]);
+        },
+      );
+    });
   }
 
   Widget _buildShapesTab() {
-    return GridView.builder(
-      padding: const EdgeInsets.all(16.0),
-      physics: const BouncingScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 12.0,
-        mainAxisSpacing: 12.0,
-        childAspectRatio: 1.05,
-      ),
-      itemCount: controller.shapesList.length,
-      itemBuilder: (ctx, i) {
-        return ShapeCardWidget(shape: controller.shapesList[i]);
-      },
-    );
+    return Builder(builder: (context) {
+      final screenSize = MediaQuery.of(context).size;
+      final bottomInset = MediaQuery.of(context).padding.bottom;
+      final double dynamicRatio = screenSize.height < 680 ? 1.1 : 1.05;
+
+      return GridView.builder(
+        padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0, bottom: 20.0 + (bottomInset > 0 ? bottomInset : 0.0)),
+        physics: const BouncingScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 12.0,
+          mainAxisSpacing: 12.0,
+          childAspectRatio: dynamicRatio,
+        ),
+        itemCount: controller.shapesList.length,
+        itemBuilder: (ctx, i) {
+          return ShapeCardWidget(shape: controller.shapesList[i]);
+        },
+      );
+    });
   }
 
   Widget _buildColoringBookTab(BuildContext context) {

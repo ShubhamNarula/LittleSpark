@@ -257,54 +257,61 @@ class NumbersScreen extends GetView<NumbersController> {
         ),
 
         // Controls bar
-        Padding(
-          padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 20.0, top: 8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Obx(() => Text(
-                    "${controller.visitedNumbers.length}/100 explored",
-                    style: AppTextStyles.bodySmall.copyWith(
-                      fontSize: 14.0,
-                      color: Colors.white.withOpacity(0.6),
-                    ),
-                  )),
-              GestureDetector(
-                onTap: () {
-                  HapticUtil.light();
-                  if (controller.isCountAlongMode.value) {
-                    controller.stopCountAlong();
-                  } else {
-                    controller.startCountAlong();
-                  }
-                },
-                child: Obx(() => Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [AppColors.mint, Color(0xFF44A08D)],
-                        ),
-                        borderRadius: BorderRadius.circular(14.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.mint.withOpacity(0.3),
-                            blurRadius: 8.0,
-                            offset: const Offset(0, 3),
-                          ),
-                        ],
-                      ),
-                      child: Text(
-                        controller.isCountAlongMode.value ? "⏹ Stop" : "▶ Count Along 🎵",
-                        style: AppTextStyles.bodySmallBold.copyWith(
-                          fontSize: 14.0,
-                          color: Colors.white,
-                        ),
+        Builder(builder: (ctx) {
+          final bottomInset = MediaQuery.of(ctx).padding.bottom;
+          return Padding(
+            padding: EdgeInsets.only(
+              left: 16.0,
+              right: 16.0,
+              top: 8.0,
+              bottom: 20.0 + (bottomInset > 0 ? bottomInset : 0.0),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Obx(() => Text(
+                      "${controller.visitedNumbers.length}/100 explored",
+                      style: AppTextStyles.bodySmall.copyWith(
+                        fontSize: 14.0,
+                        color: Colors.white.withOpacity(0.6),
                       ),
                     )),
-              ),
-            ],
-          ),
-        ),
+                GestureDetector(
+                  onTap: () {
+                    HapticUtil.light();
+                    if (controller.isCountAlongMode.value) {
+                      controller.stopCountAlong();
+                    } else {
+                      controller.startCountAlong();
+                    }
+                  },
+                  child: Obx(() => Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                        decoration: BoxDecoration(
+                          color: controller.isCountAlongMode.value
+                              ? AppColors.coral
+                              : AppColors.mint.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(20.0),
+                          border: Border.all(
+                            color: controller.isCountAlongMode.value
+                                ? AppColors.coral
+                                : AppColors.mint,
+                          ),
+                        ),
+                        child: Text(
+                          controller.isCountAlongMode.value ? "⏹️ Stop" : "▶️ Auto Count",
+                          style: AppTextStyles.bodySmallBold.copyWith(
+                            color: controller.isCountAlongMode.value
+                                ? Colors.white
+                                : AppColors.mint,
+                          ),
+                        ),
+                      )),
+                ),
+              ],
+            ),
+          );
+        }),
       ],
     );
   }

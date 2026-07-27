@@ -93,15 +93,21 @@ class RhymesScreen extends GetView<RhymesController> {
                         );
                       }
 
+                      final screenSize = MediaQuery.of(context).size;
+                      final bottomInset = MediaQuery.of(context).padding.bottom;
+                      final double dynamicAspectRatio = screenSize.height < 680
+                          ? 1.05
+                          : (screenSize.height < 780 ? 1.0 : 0.95);
+
                       return GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0, bottom: 24.0 + (bottomInset > 0 ? bottomInset : 0.0)),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 12.0,
                           mainAxisSpacing: 12.0,
-                          childAspectRatio: 0.95,
+                          childAspectRatio: dynamicAspectRatio,
                         ),
                         itemCount: list.length,
                         itemBuilder: (ctx, i) {

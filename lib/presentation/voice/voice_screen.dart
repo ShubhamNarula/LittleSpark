@@ -75,15 +75,22 @@ class VoiceScreen extends GetView<VoiceController> {
           ),
 
           // Mic Section (Bottom Area)
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
-            decoration: const BoxDecoration(
-              color: AppColors.bgMid,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(32.0),
-                topRight: Radius.circular(32.0),
+          Builder(builder: (ctx) {
+            final bottomInset = MediaQuery.of(ctx).padding.bottom;
+            return Container(
+              padding: EdgeInsets.only(
+                left: 24.0,
+                right: 24.0,
+                top: 20.0,
+                bottom: 20.0 + (bottomInset > 0 ? bottomInset : 0.0),
               ),
-            ),
+              decoration: const BoxDecoration(
+                color: AppColors.bgMid,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(32.0),
+                  topRight: Radius.circular(32.0),
+                ),
+              ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -171,7 +178,8 @@ class VoiceScreen extends GetView<VoiceController> {
                 }),
               ],
             ),
-          ),
+          );
+          }),
         ],
       ),
     );
@@ -283,33 +291,66 @@ class WordCard extends StatelessWidget {
           ),
           const SizedBox(height: 24.0),
 
-          // Hear voice speak button
-          BouncyButton(
-            onTap: () {
-              HapticUtil.light();
-              controller.speak(word.word);
-            },
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 10.0),
-              decoration: BoxDecoration(
-                color: AppColors.coral,
-                borderRadius: BorderRadius.circular(14.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.coral.withOpacity(0.3),
-                    blurRadius: 8.0,
-                    offset: const Offset(0, 3),
+          // Hear voice speak buttons
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              BouncyButton(
+                onTap: () {
+                  HapticUtil.light();
+                  controller.speak(word.word);
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 10.0),
+                  decoration: BoxDecoration(
+                    color: AppColors.coral,
+                    borderRadius: BorderRadius.circular(14.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.coral.withOpacity(0.3),
+                        blurRadius: 8.0,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              child: Text(
-                "🔊 Listen first",
-                style: AppTextStyles.bodySmallBold.copyWith(
-                  fontSize: 14.0, // Enforce 14sp minimum
-                  color: Colors.white,
+                  child: Text(
+                    "🔊 Listen first",
+                    style: AppTextStyles.bodySmallBold.copyWith(
+                      fontSize: 14.0,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
-            ),
+              const SizedBox(width: 12.0),
+              BouncyButton(
+                onTap: () {
+                  HapticUtil.light();
+                  controller.speak("Great job! ${word.word}");
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 10.0),
+                  decoration: BoxDecoration(
+                    color: AppColors.lavender,
+                    borderRadius: BorderRadius.circular(14.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.lavender.withOpacity(0.3),
+                        blurRadius: 8.0,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Text(
+                    "🗣️ Hear Voice",
+                    style: AppTextStyles.bodySmallBold.copyWith(
+                      fontSize: 14.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

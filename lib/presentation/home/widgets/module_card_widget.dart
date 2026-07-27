@@ -47,54 +47,60 @@ class ModuleCardWidget extends StatelessWidget {
           children: [
             // Main content
             Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Bouncing Emoji icon
-                  Text(
-                    module.emoji,
-                    style: const TextStyle(fontSize: 48.0),
-                  )
-                      .animate(onPlay: (c) => c.repeat(reverse: true))
-                      .moveY(
-                        begin: 0.0,
-                        end: -4.0,
-                        duration: const Duration(seconds: 2),
-                        curve: Curves.easeInOut,
+              padding: const EdgeInsets.all(12.0),
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Bouncing Emoji icon
+                    Text(
+                      module.emoji,
+                      style: const TextStyle(fontSize: 44.0),
+                    )
+                        .animate(onPlay: (c) => c.repeat(reverse: true))
+                        .moveY(
+                          begin: 0.0,
+                          end: -4.0,
+                          duration: const Duration(seconds: 2),
+                          curve: Curves.easeInOut,
+                        ),
+                    const SizedBox(height: 6.0),
+                    
+                    // Module Name
+                    Text(
+                      module.name,
+                      style: AppTextStyles.bodyMediumBold.copyWith(color: Colors.white),
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 6.0),
+                    
+                    // Progress Indicator
+                    SizedBox(
+                      width: 110,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(4.0),
+                        child: LinearProgressIndicator(
+                          value: module.progress,
+                          backgroundColor: Colors.white.withOpacity(0.2),
+                          valueColor: const AlwaysStoppedAnimation<Color>(AppColors.gold),
+                          minHeight: 5.0,
+                        ),
                       ),
-                  const SizedBox(height: 8.0),
-                  
-                  // Module Name
-                  Text(
-                    module.name,
-                    style: AppTextStyles.bodyMediumBold.copyWith(color: Colors.white),
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 8.0),
-                  
-                  // Progress Indicator
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(4.0),
-                    child: LinearProgressIndicator(
-                      value: module.progress,
-                      backgroundColor: Colors.white.withOpacity(0.2),
-                      valueColor: const AlwaysStoppedAnimation<Color>(AppColors.gold),
-                      minHeight: 5.0,
                     ),
-                  ),
-                  const SizedBox(height: 4.0),
-                  
-                  // Progress Text (minimum 14sp to follow typography guideline)
-                  Text(
-                    "${(module.progress * 100).toInt()}% done",
-                    style: AppTextStyles.bodySmall.copyWith(
-                      color: Colors.white.withOpacity(0.6),
+                    const SizedBox(height: 4.0),
+                    
+                    // Progress Text
+                    Text(
+                      "${(module.progress * 100).toInt()}% done",
+                      style: AppTextStyles.bodySmall.copyWith(
+                        color: Colors.white.withOpacity(0.6),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
 

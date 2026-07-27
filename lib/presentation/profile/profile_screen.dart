@@ -29,7 +29,12 @@ class ProfileScreen extends GetView<ProfileController> {
               top: false,
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                padding: EdgeInsets.only(
+                  left: 16.0,
+                  right: 16.0,
+                  top: 12.0,
+                  bottom: 24.0 + (MediaQuery.of(context).padding.bottom > 0 ? MediaQuery.of(context).padding.bottom : 0.0),
+                ),
                 child: Column(
                   children: [
                     // Kid profile header card

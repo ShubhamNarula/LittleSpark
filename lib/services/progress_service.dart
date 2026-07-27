@@ -17,6 +17,7 @@ class ProgressService extends GetxService {
   final RxSet<String> _visitedFruits = <String>{}.obs;
   final RxSet<String> _visitedColors = <String>{}.obs;
   final RxSet<String> _visitedShapes = <String>{}.obs;
+  final RxSet<String> _visitedRhymes = <String>{}.obs;
   final RxInt _voicePracticeCount = 0.obs;
   final RxSet<String> _unlockedBadges = <String>{}.obs;
 
@@ -72,6 +73,9 @@ class ProgressService extends GetxService {
     
     final List shapes = _box.get('visitedShapes', defaultValue: []);
     _visitedShapes.addAll(shapes.cast<String>());
+
+    final List rhymes = _box.get('visitedRhymes', defaultValue: []);
+    _visitedRhymes.addAll(rhymes.cast<String>());
     
     _voicePracticeCount.value = _box.get('voicePracticeCount', defaultValue: 0);
     
@@ -143,6 +147,7 @@ class ProgressService extends GetxService {
   RxSet<String> get visitedFruits => _visitedFruits;
   RxSet<String> get visitedColors => _visitedColors;
   RxSet<String> get visitedShapes => _visitedShapes;
+  RxSet<String> get visitedRhymes => _visitedRhymes;
 
   int get voicePracticeCount => _voicePracticeCount.value;
   RxInt get voicePracticeCountRx => _voicePracticeCount;
@@ -184,7 +189,7 @@ class ProgressService extends GetxService {
   int get adventureUnlockedStage => _adventureUnlockedStage.value;
   RxInt get adventureUnlockedStageRx => _adventureUnlockedStage;
   int get adventureTotalCollected => _adventureTotalCollected.value;
-  double get adventureProgress => (_adventureUnlockedStage.value / 30.0).clamp(0.0, 1.0);
+  double get adventureProgress => ((_adventureUnlockedStage.value - 1) / 48.0).clamp(0.0, 1.0);
 
   int getMemoryMatchLevelStars(int level) => _memoryMatchLevelStars['$level'] ?? 0;
   int getMemoryMatchBestTime(int level) => _memoryMatchBestTimes['$level'] ?? 0;
@@ -213,6 +218,13 @@ class ProgressService extends GetxService {
   }
 
   // Adventure progress methods
+  void addVisitedRhyme(String rhymeId) {
+    if (!_visitedRhymes.contains(rhymeId)) {
+      _visitedRhymes.add(rhymeId);
+      _box.put('visitedRhymes', _visitedRhymes.toList());
+    }
+  }
+
   void updateAdventureHighScore(int score) {
     if (score > _adventureHighScore.value) {
       _adventureHighScore.value = score;

@@ -152,30 +152,43 @@ class AnimalsScreen extends GetView<AnimalsController> {
               );
             }
 
-            return GridView.builder(
-              padding: const EdgeInsets.all(12.0),
-              physics: const BouncingScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 12.0,
-                mainAxisSpacing: 12.0,
-                childAspectRatio: 1.0,
-              ),
-              itemCount: list.length,
-              itemBuilder: (ctx, i) {
-                final animal = list[i];
-                final isVisited = controller.visitedAnimals.contains(animal.name);
-                
-                return AnimalCardWidget(
-                  animal: animal,
-                  isVisited: isVisited,
-                  onTap: () => controller.onAnimalTap(animal),
-                )
-                    .animate(key: ValueKey('${animal.name}_$i'))
-                    .slideX(begin: 0.3, end: 0.0, duration: 400.ms, curve: Curves.easeOutCubic)
-                    .fadeIn(duration: 400.ms);
-              },
-            );
+            return Builder(builder: (ctx) {
+              final screenSize = MediaQuery.of(ctx).size;
+              final bottomInset = MediaQuery.of(ctx).padding.bottom;
+              final double dynamicRatio = screenSize.height < 680
+                  ? 1.05
+                  : (screenSize.height < 780 ? 1.0 : 0.95);
+
+              return GridView.builder(
+                padding: EdgeInsets.only(
+                  left: 12.0,
+                  right: 12.0,
+                  top: 12.0,
+                  bottom: 20.0 + (bottomInset > 0 ? bottomInset : 0.0),
+                ),
+                physics: const BouncingScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 12.0,
+                  mainAxisSpacing: 12.0,
+                  childAspectRatio: dynamicRatio,
+                ),
+                itemCount: list.length,
+                itemBuilder: (ctx, i) {
+                  final animal = list[i];
+                  final isVisited = controller.visitedAnimals.contains(animal.name);
+                  
+                  return AnimalCardWidget(
+                    animal: animal,
+                    isVisited: isVisited,
+                    onTap: () => controller.onAnimalTap(animal),
+                  )
+                      .animate(key: ValueKey('${animal.name}_$i'))
+                      .slideX(begin: 0.3, end: 0.0, duration: 400.ms, curve: Curves.easeOutCubic)
+                      .fadeIn(duration: 400.ms);
+                },
+              );
+            });
           }),
         ),
       ],

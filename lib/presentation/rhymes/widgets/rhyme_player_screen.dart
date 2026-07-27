@@ -292,6 +292,7 @@ class _RhymePlayerScreenState extends State<RhymePlayerScreen> with SingleTicker
 
             SafeArea(
               child: SingleChildScrollView(
+                padding: EdgeInsets.only(bottom: 24.0 + (MediaQuery.of(context).padding.bottom > 0 ? MediaQuery.of(context).padding.bottom : 0.0)),
                 physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [

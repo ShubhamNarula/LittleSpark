@@ -147,10 +147,12 @@ class AdventureHomeScreen extends StatelessWidget {
 
   Widget _buildWorldList(AdventureController ctrl, ProgressService progress) {
     final worlds = AdventureContentData.worlds;
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      physics: const BouncingScrollPhysics(),
-      itemCount: worlds.length,
+    return Builder(builder: (ctx) {
+      final bottomInset = MediaQuery.of(ctx).padding.bottom;
+      return ListView.builder(
+        padding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16 + (bottomInset > 0 ? bottomInset : 0.0)),
+        physics: const BouncingScrollPhysics(),
+        itemCount: worlds.length,
       itemBuilder: (ctx, i) {
         final world = worlds[i];
         final worldStages = AdventureContentData.getWorldStages(world.id);
@@ -167,6 +169,7 @@ class AdventureHomeScreen extends StatelessWidget {
         ).animate(delay: (i * 80).ms).slideX(begin: 0.3, end: 0, duration: 400.ms).fadeIn(duration: 400.ms);
       },
     );
+    });
   }
 }
 

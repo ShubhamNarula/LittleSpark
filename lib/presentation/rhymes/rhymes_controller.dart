@@ -88,6 +88,7 @@ class RhymesController extends GetxController {
     // Stop any other sound/speech first
     AudioService.to.stopBgMusic();
     TtsService.to.stop();
+    _progress.addVisitedRhyme(rhyme.id);
   }
 
   /// Cycle to the next available video ID when one fails
